@@ -1,0 +1,159 @@
+$date
+	Sun Nov 27 13:18:37 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb $end
+$var wire 1 ! ResultSrc $end
+$var wire 1 " RegWrite $end
+$var wire 1 # PCSrc $end
+$var wire 1 $ MemWrite $end
+$var wire 2 % ImmSrc [1:0] $end
+$var wire 1 & ALUSrc $end
+$var wire 3 ' ALUControl [2:0] $end
+$var reg 3 ( func3 [2:0] $end
+$var reg 1 ) func7 $end
+$var reg 7 * op [6:0] $end
+$var reg 1 + zero $end
+$scope module dut $end
+$var wire 1 # PCSrc $end
+$var wire 3 , func3 [2:0] $end
+$var wire 1 ) func7 $end
+$var wire 7 - op [6:0] $end
+$var wire 1 + zero $end
+$var wire 1 . op5 $end
+$var wire 1 ! ResultSrc $end
+$var wire 1 " RegWrite $end
+$var wire 1 $ MemWrite $end
+$var wire 2 / ImmSrc [1:0] $end
+$var wire 1 0 Branch $end
+$var wire 1 & ALUSrc $end
+$var wire 2 1 ALUOp [1:0] $end
+$var wire 3 2 ALUControl [2:0] $end
+$scope module alu_dec $end
+$var wire 3 3 func3 [2:0] $end
+$var wire 1 ) func7_5 $end
+$var wire 1 . op5 $end
+$var wire 2 4 signal [1:0] $end
+$var wire 2 5 ALUOp [1:0] $end
+$var wire 3 6 ALUControl [2:0] $end
+$upscope $end
+$scope module main_dec $end
+$var wire 7 7 op [6:0] $end
+$var wire 1 ! ResultSrc $end
+$var wire 1 " RegWrite $end
+$var wire 1 $ MemWrite $end
+$var wire 2 8 ImmSrc [1:0] $end
+$var wire 1 0 Branch $end
+$var wire 1 & ALUSrc $end
+$var wire 2 9 ALUOp [1:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 9
+b0 8
+b11 7
+b0 6
+b0 5
+b0 4
+b0 3
+b0 2
+b0 1
+00
+b0 /
+0.
+b11 -
+b0 ,
+1+
+b11 *
+0)
+b0 (
+b0 '
+1&
+b0 %
+0$
+0#
+1"
+1!
+$end
+#100
+0"
+1.
+1$
+0!
+b1 %
+b1 /
+b1 8
+b11 4
+1)
+b100011 *
+b100011 -
+b100011 7
+#200
+b1 '
+b1 2
+b1 6
+1"
+0&
+0$
+b0 %
+b0 /
+b0 8
+b10 1
+b10 5
+b10 9
+b110011 *
+b110011 -
+b110011 7
+#300
+0"
+1#
+b10 %
+b10 /
+b10 8
+10
+b1 1
+b1 5
+b1 9
+b10 4
+0)
+b1100011 *
+b1100011 -
+b1100011 7
+#400
+b101 '
+b101 2
+b101 6
+1"
+0#
+b0 %
+b0 /
+b0 8
+00
+b10 1
+b10 5
+b10 9
+b10 (
+b10 ,
+b10 3
+b110011 *
+b110011 -
+b110011 7
+#500
+b11 '
+b11 2
+b11 6
+b110 (
+b110 ,
+b110 3
+#600
