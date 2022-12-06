@@ -1,7 +1,7 @@
-module adder(Inp1, Inp2, Sum);
+module Adder(Inp1, Inp2, Sum);
 
     // inputs
-    input [31:0] Inp2, Inp2;
+    input [31:0] Inp1, Inp2;
     // outputs
     output [31:0] Sum;
 

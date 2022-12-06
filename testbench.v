@@ -1,6 +1,6 @@
 module tb();
 
-    reg clk=0, reset, 
+    reg clk=0, reset;
 
     Single_Cycle dut (
         .clk(clk),
@@ -9,6 +9,7 @@ module tb();
 
     always begin
        clk = ~clk;
+       #50;
     end
 
     initial begin

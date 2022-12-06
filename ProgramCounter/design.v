@@ -1,6 +1,6 @@
-module Program_Counter(PCnext, clk, reset, PC);
+module Program_Counter(PCNext, clk, reset, PC);
 
-    input [31:0] PCnext
+    input [31:0] PCNext;
     input clk, reset;  
 
     output reg [31:0] PC;
@@ -10,7 +10,8 @@ module Program_Counter(PCnext, clk, reset, PC);
             PC <= 32'h00000000;
         end
         else begin
-            PC <= PCnext;
+            PC <= PCNext;
+        end
     end
 
 endmodule

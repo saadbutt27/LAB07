@@ -1,5 +1,3 @@
-`include "./DecoderModules/main_decoder.v"
-`include "./DecoderModules/alu_decoder.v"
 module control_unit(zero, op, func3, func7, PCSrc, RegWrite, ALUSrc, MemWrite, ResultSrc, ImmSrc, ALUControl);
 
     input zero, func7;

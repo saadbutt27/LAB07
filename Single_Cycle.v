@@ -2,6 +2,8 @@
 `include "./InstructionMemory/design.v"
 `include "./RegisterFile/design.v"
 `include "./ControlUnit/control_unit.v"
+`include "./ControlUnit/DecoderModules/main_decoder.v"
+`include "./ControlUnit/DecoderModules/alu_decoder.v"
 `include "./SignExtension/design.v"
 `include "./ALU/design.v"
 `include "./DataMemory/design.v"
