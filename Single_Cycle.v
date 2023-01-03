@@ -1,7 +1,7 @@
 `include "./ProgramCounter/design.v"
 `include "./InstructionMemory/design.v"
 `include "./RegisterFile/design.v"
-`include "./ControlUnit/control_unit.v"
+`include "./ControlUnit/Control_Unit.v"
 `include "./ControlUnit/DecoderModules/main_decoder.v"
 `include "./ControlUnit/DecoderModules/alu_decoder.v"
 `include "./SignExtension/design.v"
@@ -16,27 +16,33 @@ module Single_Cycle(clk, reset);
     wire[31:0] PC_w;
     wire [31:0] Instruction;
     wire [31:0] RD1;
+    wire [31:0] RD2;
     wire [31:0] Extended;
     wire [31:0] ALUResult;
     wire RegWrite;
+    wire MemWrite;
     wire [31:0] RD;
     wire [31:0] NextIns;
+    wire [2:0] ALUControl;
+    wire [1:0] ImmSrc;
+
+    wire [31:0] X,Y;
  
     // Module Instantiation
     Program_Counter Program_Counter (  // fetch cyle starts
+        .PCNext(NextIns),
         .clk(clk),
         .reset(reset),
-        .PC(PC_w),
-        .PCNext(NextIns)
+        .PC(PC_w)
     );
 
-    Instruction_Memory Instruction_Memory (  // fetch cyle ends
+    Instruction_Memory Instruction_Memory (
         .reset(reset),
         .A(PC_w),
         .RD(Instruction)
-    );
+    );                                 // fetch cyle ends
 
-    control_unit control_unit (  // Decode cycle satrts
+    Control_Unit Control_Unit (  // Decode cycle satrts
         .zero(),
         .op(Instruction[6:0]),
         .func3(Instruction[14:12]),
@@ -44,34 +50,35 @@ module Single_Cycle(clk, reset);
         .PCSrc(),
         .RegWrite(RegWrite),
         .ALUSrc(),
-        .MemWrite(),
+        .MemWrite(MemWrite),
         .ResultSrc(),
-        .ImmSrc(),
-        .ALUControl()
+        .ImmSrc(ImmSrc),
+        .ALUControl(ALUControl)
     );
 
     Register_File Register_File (
         .A1(Instruction[19:15]),
-        .A2(),
+        .A2(Instruction[24:20]),
         .A3(Instruction[11:7]),
         .WD3(RD),
         .clk(clk),
         .reset(reset),
         .WE3(RegWrite),
         .RD1(RD1),
-        .RD2()
+        .RD2(RD2)
     );
 
-    Sign_Extension Sign_Extension (  // Decode cycle ends
-        .ImmInst(Instruction[31:20]),
+    Sign_Extension Sign_Extension ( 
+        .ImmInst(Instruction),
+        .ImmSrc(ImmSrc),
         .ImmExt(Extended)
-    );
+    );                              // Decode cycle ends
 
-    Flags_ALU Flags_ALU (
+    Flags_ALU ALU (
         .A(RD1),
         .B(Extended),
-        .ctrl(),
-        .Result(),
+        .ctrl(ALUControl),
+        .Result(ALUResult),
         .Z(),
         .N(),
         .C(),
@@ -80,10 +87,10 @@ module Single_Cycle(clk, reset);
 
     Data_Memory Data_Memory (
         .A(ALUResult),
-        .WD(),
+        .WD(RD2),
         .clk(clk),
         .reset(reset),
-        .WE(),
+        .WE(MemWrite),
         .RD(RD)
     );
 
