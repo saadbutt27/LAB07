@@ -8,11 +8,11 @@ module Data_Memory(A, WD, clk, reset, WE, RD);
     reg [31:0] memory [1023:0];
     
     initial begin
-      memory[0] = 32'h00000001;
-      memory[1] = 32'h00000010;
-      memory[2] = 32'h00000100;
-      memory[3] = 32'h00001000;
-      memory[4] = 32'h00010000;
+    //   memory[0] = 32'h00000001;
+    //   memory[1] = 32'h00000010;
+    //   memory[2] = 32'h00000100;
+    //   memory[3] = 32'h00001000;
+    //   memory[4] = 32'h00010000;
     end
 
     // read
