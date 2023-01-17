@@ -8,6 +8,7 @@
 `include "./ALU/design.v"
 `include "./DataMemory/design.v"
 `include "./Adder/design.v"
+`include "./MUX/design.v"
 
 module Single_Cycle(clk, reset);
 
@@ -25,6 +26,8 @@ module Single_Cycle(clk, reset);
     wire [31:0] NextIns;
     wire [2:0] ALUControl;
     wire [1:0] ImmSrc;
+    wire ALUSrc, ResultSrc;
+    wire [31:0] muxOut, dataMemOut;
 
     wire [31:0] X,Y;
  
@@ -46,12 +49,12 @@ module Single_Cycle(clk, reset);
         .zero(),
         .op(Instruction[6:0]),
         .func3(Instruction[14:12]),
-        .func7(),
+        .func7(Instruction[29]),
         .PCSrc(),
         .RegWrite(RegWrite),
-        .ALUSrc(),
+        .ALUSrc(ALUSrc),
         .MemWrite(MemWrite),
-        .ResultSrc(),
+        .ResultSrc(ResultSrc),
         .ImmSrc(ImmSrc),
         .ALUControl(ALUControl)
     );
@@ -60,7 +63,7 @@ module Single_Cycle(clk, reset);
         .A1(Instruction[19:15]),
         .A2(Instruction[24:20]),
         .A3(Instruction[11:7]),
-        .WD3(RD),
+        .WD3(dataMemOut),
         .clk(clk),
         .reset(reset),
         .WE3(RegWrite),
@@ -76,7 +79,7 @@ module Single_Cycle(clk, reset);
 
     Flags_ALU ALU (
         .A(RD1),
-        .B(Extended),
+        .B(muxOut),
         .ctrl(ALUControl),
         .Result(ALUResult),
         .Z(),
@@ -98,6 +101,20 @@ module Single_Cycle(clk, reset);
         .Inp1(PC_w),
         .Inp2(32'd4),
         .Sum(NextIns)
+    );
+
+    mux2x1 mux2x1_1(
+        .inp1(RD2),
+        .inp2(Extended),
+        .signal(ALUSrc),
+        .out(muxOut)
+    );
+
+    mux2x1 mux2x1_2(
+        .inp1(ALUResult),
+        .inp2(RD),
+        .signal(ResultSrc),
+        .out(dataMemOut)
     );
 
 endmodule
