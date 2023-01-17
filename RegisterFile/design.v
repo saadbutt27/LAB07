@@ -15,8 +15,8 @@ module Register_File(A1, A2, A3, WD3, clk, reset, WE3, RD1, RD2);
         register[1] <= 32'h00100121;
         register[3] <= 32'h00121004;
         register[4] <= 32'h43127895;
-        register[5] <= 32'h24360789;
-        register[6] <= 32'h00000004; // Base register
+        register[5] <= 32'h00000006;
+        register[6] <= 32'h00000007; // Base register
     end
 
     // reading from registers which are operands
