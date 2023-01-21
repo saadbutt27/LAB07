@@ -16,7 +16,7 @@ module tb();
       reset <= 1'b1;
       #100;
       reset <= 1'b0;
-      #500;
+      #900;
       $finish;
     end
 

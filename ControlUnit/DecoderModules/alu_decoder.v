@@ -14,6 +14,6 @@ module alu_decoder(ALUOp, func3, op5, func7_5, ALUControl);
                         ((ALUOp == 2'b10) & (func3 == 3'b000) & (signal != 2'b11)) ? 3'b000 :
                         ((ALUOp == 2'b10) & (func3 == 3'b010)) ? 3'b101 :
                         ((ALUOp == 2'b10) & (func3 == 3'b110)) ? 3'b011 :
-                        ((ALUOp == 2'b10) & (func3 == 3'b011)) ? 3'b010 : 3'b000;
+                        ((ALUOp == 2'b10) & (func3 == 3'b111)) ? 3'b010 : 3'b000;
 
 endmodule

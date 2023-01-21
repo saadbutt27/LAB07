@@ -49,7 +49,7 @@ module Single_Cycle(clk, reset);
         .zero(),
         .op(Instruction[6:0]),
         .func3(Instruction[14:12]),
-        .func7(Instruction[29]),
+        .func7(Instruction[30]),
         .PCSrc(),
         .RegWrite(RegWrite),
         .ALUSrc(ALUSrc),
